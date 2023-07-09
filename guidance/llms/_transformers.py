@@ -614,6 +614,7 @@ class TransformersStringBuilder():
     def extend(self, new_ids):
         new_token_strings = self.tokenizer.convert_ids_to_tokens(new_ids)
         self.token_strings.extend(new_token_strings)
+        self.token_strings = list(filter(lambda x: x is not None, self.token_strings))
         new_str = self.tokenizer.convert_tokens_to_string(self.token_strings)
         diff_str = new_str[len(self._joint_string):]
         self._joint_string = new_str
